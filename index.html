@@ -84,6 +84,7 @@ function searchMap(){var q=$("mq").value.trim();if(!q||!amap)return;AMap.plugin(
 function focusPoi(lng,lat){if(!amap)return;amap.setZoomAndCenter(16,[Number(lng),Number(lat)]);if(marker)amap.remove(marker);marker=new AMap.Marker({position:[Number(lng),Number(lat)]});amap.add(marker)}
 
 document.addEventListener("click",function(e){var a=e.target.closest("[data-action]");if(a){var act=a.dataset.action;if(act==="home")home();else if(act==="system")system();else if(act==="map")map();else if(act==="display")display();else if(act==="closeDisplay"){closeDisplay();system()}else if(act==="logout")logout();else if(act==="authLogin")showAuth("login");else if(act==="authRegister")showAuth("register");else if(act==="login")loginAccount();else if(act==="register")registerAccount();else if(act==="recipes")recipes();else if(act==="groceries")groceries();else if(act==="restaurants")restaurants();else if(act==="addRecipe")addRecipe();else if(act==="saveRecipe")saveRecipe();else if(act==="addG")addG();else if(act==="saveG")saveG();else if(act==="addRestaurant")addRestaurant();else if(act==="saveR")saveR();else if(act==="closeModal")closeModal();else if(act==="searchMap")searchMap()}
+});
 var q=e.target.closest("[data-q]");if(q){$("mq").value=q.dataset.q;searchMap()}
 var d=e.target.closest("[data-del-recipe]");if(d){db.recipes=db.recipes.filter(function(x){return x.id!==d.dataset.delRecipe});save();recipes()}
 d=e.target.closest("[data-del-g]");if(d){db.groceries=db.groceries.filter(function(x){return x.id!==d.dataset.delG});save();groceries()}
