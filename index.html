@@ -93,10 +93,10 @@ d=e.target.closest("[data-add-map]");if(d){try{addRestaurant(JSON.parse(decodeUR
 });
 document.addEventListener("input",function(e){if(e.target.id==="fcity"||e.target.id==="farea"||e.target.id==="fcat")filterRestaurants()});
 document.addEventListener("input",function(e){if(e.target.id==="bgColor")saveColor("bg",e.target.value);if(e.target.id==="iconColor")saveColor("icon",e.target.value)});
-document.addEventListener("change",function(e){if(e.target.id==="fontFile"&&e.target.files&&e.target.files[0]){var file=e.target.files[0],reader=new FileReader();reader.onload=function(){var s={};try{s=JSON.parse(localStorage.getItem("xiaojinshenghuo:display")||"{}")}catch(e){}s.fontData=reader.result;s.fontName=file.name;localStorage.setItem("xiaojinshenghuo:display",JSON.stringify(s));applyDisplay(s);if($("fontStatus"))$("fontStatus").textContent="已使用："+file.name};reader.readAsDataURL(file)}});f(sw){setDisplay(sw.dataset.colorType,sw.dataset.color);return}var fb=e.target.closest("[data-font]");if(fb){var s=JSON.parse(localStorage.getItem("xiaojinsheng:display")||"{}");s.font=fb.dataset.font;localStorage.setItem("xiaojinsheng:display",JSON.stringify(s));applyDisplay(s)}});
+document.addEventListener("change",function(e){if(e.target.id==="fontFile"&&e.target.files&&e.target.files[0]){var file=e.target.files[0],reader=new FileReader();reader.onload=function(){var s={};try{s=JSON.parse(localStorage.getItem("xiaojinshenghuo:display")||"{}")}catch(e){}s.fontData=reader.result;s.fontName=file.name;localStorage.setItem("xiaojinshenghuo:display",JSON.stringify(s));applyDisplay(s);if($("fontStatus"))$("fontStatus").textContent="已使用："+file.name};reader.readAsDataURL(file)}});
 
 function boot(){var s=localStorage.getItem("xiaojinshenghuo:session");var a=s&&accounts().find(function(x){return x.username===s});if(a){user=a;home()}else showAuth("login")}
 boot();
-if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js?v=5").catch(function(){})}
+if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js?v=6").catch(function(){})}
 </script>
 </body></html>
