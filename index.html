@@ -111,8 +111,9 @@ var cityList=[
 ["银川","y"],["石嘴山","s"],["吴忠","w"],["固原","g"],["中卫","z"],
 ["乌鲁木齐","w"],["克拉玛依","k"],["吐鲁番","t"],["哈密","h"] 
 ];
-function showCitySuggestions(){
+function showCitySuggestions(force){
   var input=$("rcity"),box=$("citySuggestions");if(!input||!box)return;
+  if(!force&&document.activeElement!==input)return;
   var q=input.value.trim().toLowerCase();
   var hits=cityList.filter(function(x){return !q||x[0].toLowerCase().indexOf(q)>=0||x[1].indexOf(q)===0}).slice(0,12);
   box.innerHTML=hits.map(function(x){return '<button type="button" data-city-choice="'+esc(x[0])+'"><span>'+esc(x[0])+'</span><small>'+x[1].toUpperCase()+'</small></button>'}).join("");
@@ -120,8 +121,25 @@ function showCitySuggestions(){
 }
 function addRestaurant(p){
   p=p||{};var city=p.city||"广州";
-  modal("添加餐厅",'<label>餐厅名称</label><input id="rname" value="'+esc(p.name||"")+'"><label>城市</label><div style="position:relative"><input id="rcity" autocomplete="off" value="'+esc(city)+'" placeholder="输入城市或首字母"><div id="citySuggestions" class="city-suggestions"></div></div><label>地区</label><input id="rdistrict" value="'+esc(p.area||"")+'" placeholder="例如：洪山区 / 天河区"><label>种类</label><input id="rcat" value="'+esc(p.category||"")+'"><label>地址</label><input id="raddr" value="'+esc(p.address||"")+'"><label>备注</label><input id="rnote" value="'+esc(p.note||"")+'">',"saveR");
-  showCitySuggestions();
+  modal("添加餐厅",'<label>餐厅名称</label><input id="rname" value="'+esc(p.name||"")+'"><label>城市</label><div style="position:relative"><input id="rcity" autocomplete="off" value="'+esc(city)+'" placeholder="输入城市或首字母"><div id="citySuggestions" class="city-suggestions"></div></div><label>地区</label><select id="rdistrict" style="width:100%;border:1px solid var(--line);background:#fff;color:#111;border-radius:12px;padding:12px;font:inherit"><option value="">选择区县</option></select><div id="districtHint" class="meta" style="margin-top:6px">根据城市自动加载</div><label>种类</label><input id="rcat" value="'+esc(p.category||"")+'"><label>地址</label><input id="raddr" value="'+esc(p.address||"")+'"><label>备注</label><input id="rnote" value="'+esc(p.note||"")+'">',"saveR");
+  if($("citySuggestions"))$("citySuggestions").style.display="none";
+  loadRestaurantDistricts(city);
+}
+function loadRestaurantDistricts(city){
+  var a=$("rdistrict"),hint=$("districtHint");if(!a)return;
+  a.innerHTML="<option value=\"\">正在加载区县…</option>";a.disabled=true;
+  if(!window.AMap){a.disabled=false;a.innerHTML="<option value=\"\">请先加载地图</option>";return}
+  AMap.plugin("AMap.DistrictSearch",function(){
+    var ds=new AMap.DistrictSearch({level:"city",subdistrict:1,showbiz:false,extensions:"all"});
+    ds.search(city,function(status,result){
+      var list=[];
+      if(status==="complete"&&result.districtList&&result.districtList[0])list=result.districtList[0].districtList||[];
+      a.innerHTML=list.map(function(x){return "<option>"+esc(x.name)+"</option>"}).join("");
+      a.disabled=false;
+      if(!list.length)a.innerHTML="<option value=\"\">暂无区县数据</option>";
+      if(hint)hint.textContent=list.length?"已根据城市加载区县":"可手动输入区县";
+    });
+  });
 }
 function saveR(){
   var n=$("rname").value.trim(),city=$("rcity").value.trim();
@@ -166,6 +184,8 @@ else if(act==="closeModal")closeModal();
 else if(act==="searchMap")searchMap();
 }
 var cityChoice=e.target.closest("[data-city-choice]");if(cityChoice){if($("rcity"))$("rcity").value=cityChoice.dataset.cityChoice;if($("citySuggestions"))$("citySuggestions").style.display="none"}
+if($("citySuggestions")&&e.target.id!=="rcity"&&!e.target.closest("#citySuggestions"))$("citySuggestions").style.display="none";
+if($("modal")&&e.target===$("modal"))closeModal();
 var q=e.target.closest("[data-q]");
 if(q){$("mq").value=q.dataset.q;searchMap()}
 var d=e.target.closest("[data-del-recipe]");
@@ -181,7 +201,7 @@ if(d){try{addRestaurant(JSON.parse(decodeURIComponent(d.dataset.addMap)))}catch(
 });
 document.addEventListener("input",function(e){if(e.target.id==="fcity"||e.target.id==="farea"||e.target.id==="fcat")filterRestaurants()});
 document.addEventListener("input",function(e){if(e.target.id==="bgColor")saveColor("bg",e.target.value);if(e.target.id==="iconColor")saveColor("icon",e.target.value)});
-document.addEventListener("input",function(e){if(e.target.id==="rcity")showCitySuggestions()});document.addEventListener("change",function(e){if(e.target.id==="rcity")updateRestaurantAreas();if(e.target.id==="fontFile"&&e.target.files&&e.target.files[0]){var file=e.target.files[0],reader=new FileReader();reader.onload=function(){var s={};try{s=JSON.parse(localStorage.getItem("xiaojinshenghuo:display")||"{}")}catch(e){}s.fontData=reader.result;s.fontName=file.name;localStorage.setItem("xiaojinshenghuo:display",JSON.stringify(s));applyDisplay(s);if($("fontStatus"))$("fontStatus").textContent="已使用："+file.name};reader.readAsDataURL(file)}});
+document.addEventListener("focusin",function(e){if(e.target.id==="rcity")showCitySuggestions(true)});document.addEventListener("input",function(e){if(e.target.id==="rcity")showCitySuggestions(true)});document.addEventListener("change",function(e){if(e.target.id==="rcity"){showCitySuggestions(true);loadRestaurantDistricts(e.target.value.trim())};if(e.target.id==="fontFile"&&e.target.files&&e.target.files[0]){var file=e.target.files[0],reader=new FileReader();reader.onload=function(){var s={};try{s=JSON.parse(localStorage.getItem("xiaojinshenghuo:display")||"{}")}catch(e){}s.fontData=reader.result;s.fontName=file.name;localStorage.setItem("xiaojinshenghuo:display",JSON.stringify(s));applyDisplay(s);if($("fontStatus"))$("fontStatus").textContent="已使用："+file.name};reader.readAsDataURL(file)}});
 
 function boot(){var s=localStorage.getItem("xiaojinshenghuo:session");var a=s&&accounts().find(function(x){return x.username===s});if(a){user=a;home()}else showAuth("login")}
 boot();
