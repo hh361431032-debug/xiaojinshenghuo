@@ -19,7 +19,7 @@ header{padding:32px 20px 14px}h1{margin:0 0 6px;font-size:32px}h2{margin:0;font-
 .mapbox{height:360px;margin:0 16px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#ddd}.maptools,.chips{display:flex;gap:8px;padding:12px 16px}.maptools input{flex:1}.chip{background:#fff;border:1px solid var(--line);border-radius:18px}.result{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 16px 10px}.result-actions{display:flex;gap:8px;margin-top:10px}.result-actions button{border:0;border-radius:10px;padding:8px 10px}.add{background:#e7f1eb;color:var(--accent)}.empty{text-align:center;padding:60px 20px;color:var(--muted)}
 .auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.auth-card{width:min(430px,100%);background:#fff;border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:0 15px 50px #0001}.auth-logo{width:62px;height:62px;border-radius:18px;background:#e7f1eb;display:grid;place-items:center;font-size:32px;margin-bottom:18px}.auth-card h1{font-size:30px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#f3f1eb;border-radius:13px;padding:4px;margin:20px 0}.auth-tab{border:0;background:transparent;border-radius:10px;padding:10px;font-weight:700;color:var(--muted)}.auth-tab.active{background:#fff;color:var(--text)}.auth-error{min-height:20px;color:var(--danger);font-size:13px;margin-top:10px}.auth-tip{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.6}
 .system-btn{position:fixed;left:50%;right:auto;transform:translateX(-50%);bottom:18px;border:0;background:transparent;color:#e1aebe;border-radius:50%;width:56px;height:56px;font-size:34px;box-shadow:0 8px 25px #0003;z-index:30}.system-panel{position:fixed;right:0;top:0;height:100vh;width:60vw;max-width:none;background:var(--card);border-left:1px solid var(--line);padding:24px 18px;box-shadow:-15px 0 45px #0003;z-index:31;overflow:auto;animation:sysin .22s ease}.system-menu{display:flex;flex-direction:column;gap:10px;margin-top:24px}.system-menu button{width:100%;text-align:center}.system-menu button{color:var(--text)}.system-bottom{position:absolute;left:18px;right:18px;bottom:24px;display:flex;align-items:center;justify-content:center;gap:14px}.system-close{border:0;background:var(--accent);color:#fff;border-radius:28px;padding:12px 22px;font-weight:700}.system-user{font-size:12px;color:var(--muted);line-height:1.7}.system-panel .secondary{background:rgba(255,255,255,.72)}@keyframes sysin{from{transform:translateX(100%)}to{transform:translateX(0)}}.display-section{margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}.display-row{margin:14px 0}.swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.swatch{width:32px;height:32px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer}.font-row{display:flex;gap:8px;flex-wrap:wrap}.font-btn{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:9px 12px;cursor:pointer}
-.recipe-side{position:absolute;right:0;top:0;height:100%;width:50%;max-width:none;background:var(--bg);border-left:1px solid var(--line);padding:24px 18px;box-shadow:-15px 0 45px #0003;z-index:32;overflow:auto;animation:sysin .22s ease}.city-suggestions{position:absolute;left:0;right:0;top:calc(100% + 4px);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #0002;max-height:240px;overflow:auto;z-index:25;display:none}.city-suggestions button{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:#fff;color:#111;padding:11px 12px;text-align:left;font:inherit}.city-suggestions button+button{border-top:1px solid #eee}.city-suggestions small{color:var(--muted);font-size:11px}.filter{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0 16px 12px}
+.recipe-side{position:absolute;right:0;top:0;height:100%;width:50%;max-width:none;background:var(--bg);border-left:1px solid var(--line);padding:20px 18px;box-shadow:-15px 0 45px #0003;z-index:32;overflow:hidden;animation:sysin .22s ease;display:flex;flex-direction:column}.recipe-ingredients{flex:1;overflow:auto;padding-bottom:4px}.recipe-ingredient{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;touch-action:pan-y;overflow:hidden}.recipe-ingredient-content{transition:transform .18s ease;position:relative;z-index:2;background:#fff}.recipe-swipe-actions{position:absolute;right:0;top:0;bottom:0;display:flex;z-index:1}.recipe-swipe-actions button{width:58px;border:0;color:#fff;font-weight:700}.recipe-edit{background:#c995a8}.recipe-delete{background:#c98295}.recipe-side .actions{flex-shrink:0}.city-suggestions{position:absolute;left:0;right:0;top:calc(100% + 4px);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #0002;max-height:240px;overflow:auto;z-index:25;display:none}.city-suggestions button{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:#fff;color:#111;padding:11px 12px;text-align:left;font:inherit}.city-suggestions button+button{border-top:1px solid #eee}.city-suggestions small{color:var(--muted);font-size:11px}.filter{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0 16px 12px}
 @media(max-width:520px){.filter{grid-template-columns:repeat(3,1fr);gap:5px;margin-left:8px;margin-right:8px}.filter input{min-width:0;padding:10px 6px;font-size:13px}.grid{gap:10px;padding:12px}.card{padding:14px 4px;width:min(300px,calc(100% - 80px))}}
 </style>
 </head>
@@ -66,15 +66,47 @@ function saveColor(type,value){var s={};try{s=JSON.parse(localStorage.getItem("x
 
 
 function recipes(){load();var list=db.recipes.map(function(r){return '<div class="item"><div><b>'+esc(r.name)+'</b><div class="meta">'+esc(r.recipe||"未填写配方")+'</div><div class="meta">'+esc(r.note||"")+'</div></div><button class="smallbtn" data-del-recipe="'+esc(r.id)+'">删除</button></div>'}).join("");$("app").innerHTML=shell("菜谱",null,null)+'<div class="list">'+(list||'<div class="empty">还没有菜谱</div>')+'</div><div class="bottom-actions"><button class="back" data-action="home">‹ 返回</button><button class="fab" data-action="addRecipe">＋ 添加菜谱</button></div>'}
-function addRecipe(){window._recipeFormula=null;modal("添加菜谱",'<label>菜名</label><input id="rn"><label>配方</label><button class="secondary" style="width:100%;text-align:left" data-action="recipeFormula">点击填写食材 / 数量 / 备注</button><div id="recipePreview" class="meta" style="margin-top:7px"></div><label>备注</label><input id="rt">',"saveRecipe")}
+function addRecipe(){window._recipeIngredients=[];modal("添加菜谱",'<label>菜名</label><input id="rn"><label>配方</label><button class="secondary" style="width:100%;text-align:left" data-action="recipeFormula">点击填写食材 / 数量 / 备注</button><div id="recipePreview" class="meta" style="margin-top:7px"></div><label>备注</label><input id="rt">',"saveRecipe")}
 function recipeFormula(){
 if($("recipeFormulaPanel")){$("recipeFormulaPanel").remove();return}
-var f=window._recipeFormula||{};var panel=document.createElement("div");panel.id="recipeFormulaPanel";panel.className="recipe-side";
-panel.innerHTML='<h2>配方</h2><label>食材</label><input id="rfi" value="'+esc(f.ingredient||"")+'" placeholder="例如：鸡胸肉"><label>数量</label><input id="rfq" value="'+esc(f.qty||"")+'" placeholder="例如：200g"><label>备注</label><input id="rfn" value="'+esc(f.note||"")+'"><div class="actions"><button class="primary" data-action="saveRecipeFormula">保存</button></div>';
-$("app").appendChild(panel)
+var list=window._recipeIngredients||[];
+var panel=document.createElement("div");panel.id="recipeFormulaPanel";panel.className="recipe-side";
+panel.innerHTML='<h2>配方</h2><div class="recipe-ingredients" id="recipeIngredients"></div><button class="secondary" style="width:100%;margin-top:10px" data-action="addRecipeIngredient">＋ 添加食材</button><div class="actions"><button class="primary" data-action="saveRecipeFormula">保存配方</button></div>';
+$("app").appendChild(panel);renderRecipeIngredients();
 }
-function saveRecipeFormula(){var s={ingredient:$("rfi").value.trim(),qty:$("rfq").value.trim(),note:$("rfn").value.trim()};window._recipeFormula=s;if($("recipeFormulaPanel"))$("recipeFormulaPanel").remove();if($("recipePreview"))$("recipePreview").textContent=s.ingredient+(s.qty?" · "+s.qty:"")+(s.note?" · "+s.note:"")}
-function saveRecipe(){var n=$("rn").value.trim();if(!n)return alert("请输入菜名");var f=window._recipeFormula||{};db.recipes.unshift({id:Date.now()+"",name:n,recipe:(f.ingredient||"")+(f.qty?" · "+f.qty:"")+(f.note?" · "+f.note:""),note:$("rt").value.trim()});window._recipeFormula=null;save();closeModal();recipes()}
+function renderRecipeIngredients(){
+var box=$("recipeIngredients");if(!box)return;
+var list=window._recipeIngredients||[];
+box.innerHTML=list.map(function(x,i){
+return '<div class="recipe-ingredient" data-ingredient-index="'+i+'"><div class="recipe-swipe-actions"><button class="recipe-edit" data-edit-ingredient="'+i+'">修改</button><button class="recipe-delete" data-delete-ingredient="'+i+'">删除</button></div><div class="recipe-ingredient-content"><b>'+esc(x.ingredient||"未填写食材")+'</b><div class="meta">'+esc(x.qty||"未填写数量")+(x.note?" · "+esc(x.note):"")+'</div></div></div>'
+}).join("")||( '<div class="empty" style="padding:35px 10px">还没有食材，点击下方添加</div>');
+bindIngredientSwipe();
+}
+function addRecipeIngredient(editIndex){
+var list=window._recipeIngredients||[],x=editIndex==null?{}:(list[editIndex]||{});
+var body='<label>食材</label><input id="rfi" value="'+esc(x.ingredient||"")+'" placeholder="例如：鸡胸肉"><label>数量</label><input id="rfq" value="'+esc(x.qty||"")+'" placeholder="例如：200g"><label>备注</label><input id="rfn" value="'+esc(x.note||"")+'">';
+$("recipeIngredientEditor")?.remove();
+var p=document.createElement("div");p.id="recipeIngredientEditor";p.className="recipe-side";p.style.zIndex="33";
+p.innerHTML='<h2>'+(editIndex==null?"添加食材":"修改食材")+'</h2>'+body+'<div class="actions"><button class="secondary" data-action="closeRecipeIngredientEditor">取消</button><button class="primary" data-action="saveRecipeIngredient" data-edit-index="'+(editIndex==null?"":editIndex)+'">保存</button></div>';
+$("app").appendChild(p);
+}
+function closeRecipeIngredientEditor(){if($("recipeIngredientEditor"))$("recipeIngredientEditor").remove()}
+function saveRecipeIngredient(editIndex){
+var ingredient=$("rfi").value.trim(),qty=$("rfq").value.trim(),note=$("rfn").value.trim();
+if(!ingredient)return alert("请输入食材");
+var x={ingredient:ingredient,qty:qty,note:note},list=window._recipeIngredients||[];
+if(editIndex==="")list.push(x);else list[Number(editIndex)]=x;
+window._recipeIngredients=list;closeRecipeIngredientEditor();renderRecipeIngredients();
+}
+function bindIngredientSwipe(){
+document.querySelectorAll(".recipe-ingredient").forEach(function(el){
+var sx=0,dx=0;
+el.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;dx=0},{passive:true});
+el.addEventListener("touchmove",function(e){dx=e.touches[0].clientX-sx;if(dx<0)el.querySelector(".recipe-ingredient-content").style.transform="translateX("+Math.max(dx,-116)+"px)"},{passive:true});
+el.addEventListener("touchend",function(){if(dx<-60)el.querySelector(".recipe-ingredient-content").style.transform="translateX(-116px)";else el.querySelector(".recipe-ingredient-content").style.transform="translateX(0)"},{passive:true});
+});
+}
+function saveRecipe(){var n=$("rn").value.trim();if(!n)return alert("请输入菜名");var list=window._recipeIngredients||[];if(!list.length)return alert("请至少添加一种食材");db.recipes.unshift({id:Date.now()+"",name:n,recipe:list.map(function(x){return x.ingredient+(x.qty?" · "+x.qty:"")+(x.note?" · "+x.note:"")}).join("；"),ingredients:list,note:$("rt").value.trim()});window._recipeIngredients=null;save();closeModal();recipes()}
 
 function groceries(){load();var list=db.groceries.map(function(r){return '<div class="item"><div><b>'+esc(r.name)+'</b><div class="meta">数量：'+esc(r.qty||"未填写")+' · 价格：'+esc(r.price||"未填写")+' · 来源：'+esc(r.source||"其他")+'</div><div class="meta">'+esc(r.info||"")+'</div></div><button class="smallbtn" data-del-g="'+esc(r.id)+'">删除</button></div>'}).join("");$("app").innerHTML=shell("超市",null,null)+'<div class="list">'+(list||'<div class="empty">还没有超市记录</div>')+'</div><div class="bottom-actions"><button class="back" data-action="home">‹ 返回</button><button class="fab" data-action="addG">＋ 添加商品</button></div>'}
 function addG(){modal("添加超市商品",'<label>商品</label><input id="gn"><label>数量</label><input id="gq" type="number" min="0" step="1" placeholder="数量"><label>价格</label><input id="gp" type="number" min="0" step="0.01" placeholder="¥"><label>来源</label><select id="gs" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;font:inherit"><option>盒马生鲜</option><option>山姆</option><option>朴朴</option><option>小象</option><option>其他</option></select><label>备注</label><input id="gi" placeholder="规格等信息">',"saveG")}
@@ -172,6 +204,12 @@ function focusPoi(lng,lat){if(!amap)return;amap.setZoomAndCenter(16,[Number(lng)
 document.addEventListener("click",function(e){
   if($("systemPanel")&&!e.target.closest("#systemPanel")&&!e.target.closest('[data-action="system"]'))$("systemPanel").remove();
   if($("recipeFormulaPanel")&&!e.target.closest("#recipeFormulaPanel")&&!e.target.closest('[data-action="recipeFormula"]'))$("recipeFormulaPanel").remove();
+  if($("recipeIngredientEditor")&&!e.target.closest("#recipeIngredientEditor")&&!e.target.closest("[data-edit-ingredient]")&&!e.target.closest("[data-action=\"addRecipeIngredient\"]"))$("recipeIngredientEditor").remove();
+  var editIng=e.target.closest("[data-edit-ingredient]");
+  if(editIng){addRecipeIngredient(Number(editIng.dataset.editIngredient));return}
+  var delIng=e.target.closest("[data-delete-ingredient]");
+  if(delIng){if(confirm("删除这个食材？")){window._recipeIngredients.splice(Number(delIng.dataset.deleteIngredient),1);renderRecipeIngredients()}return}
+
 var a=e.target.closest("[data-action]");
 if(a){
 var act=a.dataset.action;
@@ -188,7 +226,7 @@ else if(act==="register")registerAccount();
 else if(act==="recipes")recipes();
 else if(act==="groceries")groceries();
 else if(act==="restaurants")restaurants();
-else if(act==="addRecipe"){if($("recipeFormulaPanel"))$("recipeFormulaPanel").remove();else addRecipe();}else if(act==="recipeFormula")recipeFormula();else if(act==="saveRecipeFormula")saveRecipeFormula();
+else if(act==="addRecipe"){if($("recipeFormulaPanel"))$("recipeFormulaPanel").remove();else addRecipe();}else if(act==="recipeFormula")recipeFormula();else if(act==="addRecipeIngredient")addRecipeIngredient();else if(act==="saveRecipeIngredient")saveRecipeIngredient(a.dataset.editIndex);else if(act==="closeRecipeIngredientEditor")closeRecipeIngredientEditor();else if(act==="saveRecipeFormula")saveRecipeFormula();
 else if(act==="saveRecipe")saveRecipe();
 else if(act==="addG")addG();
 else if(act==="saveG")saveG();
