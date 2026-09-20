@@ -126,20 +126,23 @@ function addRestaurant(p){
   loadRestaurantDistricts(city);
 }
 function loadRestaurantDistricts(city){
-  var a=$("rdistrict"),hint=$("districtHint");if(!a)return;
+  var a=$("rdistrict"),hint=$("districtHint"),old=a&&a.value;if(!a)return;
   a.innerHTML="<option value=\"\">正在加载区县…</option>";a.disabled=true;
-  if(!window.AMap){a.disabled=false;a.innerHTML="<option value=\"\">请先加载地图</option>";return}
-  AMap.plugin("AMap.DistrictSearch",function(){
-    var ds=new AMap.DistrictSearch({level:"city",subdistrict:1,showbiz:false,extensions:"all"});
-    ds.search(city,function(status,result){
-      var list=[];
-      if(status==="complete"&&result.districtList&&result.districtList[0])list=result.districtList[0].districtList||[];
-      a.innerHTML=list.map(function(x){return "<option>"+esc(x.name)+"</option>"}).join("");
-      a.disabled=false;
-      if(!list.length)a.innerHTML="<option value=\"\">暂无区县数据</option>";
-      if(hint)hint.textContent=list.length?"已根据城市加载区县":"可手动输入区县";
+  function run(){
+    AMap.plugin("AMap.DistrictSearch",function(){
+      var ds=new AMap.DistrictSearch({level:"city",subdistrict:1,showbiz:false,extensions:"all"});
+      ds.search(city,function(status,result){
+        var list=[];
+        if(status==="complete"&&result.districtList&&result.districtList[0])list=result.districtList[0].districtList||[];
+        a.innerHTML=list.map(function(x){return "<option>"+esc(x.name)+"</option>"}).join("");
+        a.disabled=false;
+        if(!list.length)a.innerHTML="<option value=\"\">暂无区县数据</option>";
+        if(old&&Array.from(a.options).some(function(o){return o.value===old}))a.value=old;
+        if(hint)hint.textContent=list.length?"已根据城市加载区县":"可手动输入区县";
+      });
     });
-  });
+  }
+  if(window.AMap)run();else loadMapScript().then(run).catch(function(){a.disabled=false;a.innerHTML="<option value=\"\">区县加载失败，可稍后重试</option>"});
 }
 function saveR(){
   var n=$("rname").value.trim(),city=$("rcity").value.trim();
